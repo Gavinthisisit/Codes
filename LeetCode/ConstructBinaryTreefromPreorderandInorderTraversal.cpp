@@ -34,7 +34,7 @@ public:
 		int pos = 0;
 		while(i<=in_end){
 			if(inorder[i] == value){
-				pos = i;
+				pos = i-in_start;
 				break;
 			}
 			i++;
