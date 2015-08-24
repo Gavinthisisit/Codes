@@ -14,6 +14,8 @@ struct ListNode {
 
 class Solution {
 public:
+	
+/**	
     ListNode* deleteDuplicates(ListNode* head) {
     	if(!head)
 			return head;
@@ -54,6 +56,33 @@ public:
 				
 		}
     }
+**/
+	ListNode* deleteDuplicates(ListNode* head) {
+		if(!head || head->next ==NULL){
+			return head;
+		}
+		ListNode* p = new ListNode(-1);   //好巧妙的添加头结点 
+		p->next = head;
+		ListNode *pre,*cur;
+		pre = p;
+		cur = head;
+		while(cur){
+			bool flag = 0;
+			while(cur->next && cur->next->val == cur->val){
+				flag = 1;
+				cur= cur->next;
+			}
+			if(flag){
+				cur = cur->next;
+				continue;
+			}
+			pre->next = cur;
+			pre = pre->next;
+			cur = cur->next;
+		}
+		pre->next = cur;    //链表尾节点
+		return p->next;  
+	}
     ListNode* creatList(vector<int>& v){
     	if(v.size()==0)
     		return NULL;
